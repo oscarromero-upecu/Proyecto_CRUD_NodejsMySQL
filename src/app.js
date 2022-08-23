@@ -14,10 +14,7 @@ const myConnection = require('express-myconnection');
 //una vez requerido vamos a inicializarlo con una constante llamado app
 const app = express();
 
-//importando rutas
-/*Vamos a decir tienes que ingresar a la carpeta route que esta el erchivo customer
-y lo vamos aguardar en una costante llamada customerRoutes*/
-const customerRoutes = require('./routes/customer');
+
 
 //settings, seccion que se encargara de configurar express
 //port (variable) que establecer el puerto del servidor
@@ -29,6 +26,7 @@ app.set('port', process.env.PORT || 3000);
 /* Vamos a confirgurar el motor de platillas ('view engine') que sera ejs
 que ya instalamos */
 app.set('view engine','ejs');
+
 //luego vamos a decirle en donde esta esta carpeta view
 /*luego de wies vamos a decierle en donde esta la ruta inicial del sistema 
 operativo, entonces vamos a utilizar el modulo path*/
@@ -49,17 +47,23 @@ host: 'localhost',
 user:'root',
 password:'123456',
 port:3306,
-datebase:'nodejsMysqlCRUD'
+database:'nodejsMysqlCRUD'
 /*aparte vamos a darle una configuracion que es como vamos a conectarnos al servidor que
 seria single */
 },'single'));
 
 app.use(express.urlencoded({extended: false}));
 
+//importando rutas
+/*Vamos a decir tienes que ingresar a la carpeta route que esta el erchivo customer
+y lo vamos aguardar en una costante llamada customerRoutes*/
+const customerRoutes = require('./routes/customer');
 
 //rutas, empezamos a escribir los urls que los usuario van a pedir en el servidor 
 //aplicacion utiliza cada vez que llegue el usuario del servidor customer
 app.use('/', customerRoutes);
+
+
 
 
 /*archivos staticos, son complemento para imagenes, codigo fuente que iran en

@@ -4,13 +4,14 @@ const controller = {};
 //metodo list traera los datos de la tabla
 controller.list = (req, res) => {
   req.getConnection((err,conn) => {
-    conn.query('SELECT * FROM customer', (_err, customer) => {
-          if(_err){
+    conn.query('SELECT * FROM customer', (err, customer) => {
+          if(err){
             res.json(err);
-          }
-          res.render('customers', {
-             data: customer
+          }else{
+            res.render('customers', {
+            data: customer
           });
+          }
     });
   });
 };
