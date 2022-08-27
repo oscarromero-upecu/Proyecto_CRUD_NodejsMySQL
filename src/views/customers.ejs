@@ -1,3 +1,74 @@
-<h1>
-    hola
-</h1>
+<!--Importamos la cabecera  con ejs -->
+<!--Incluye el archivo con la sintaxis ejs -->
+<%- include ('partials/header.ejs'); %>
+
+<!--Vamos a crear una tabla para recorrer todo los datos -->
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-7">
+            <!--vamos a disenar la tabla con estilos de bootstrap-->
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nombre</th>
+                        <th>Direccion</th>
+                        <th>Telefono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--vamos a escribir todos los datos para recorrerlos
+                    con data en sitaxis ejs-->
+                    <!-- Preguntamos si hay datos enla tabla -->
+                    <% if (data){ %>
+                        <!-- recorremos la tabla -->
+                        <% for (var i =0; i<data.length; i++){%>
+                           <tr>
+                            <!-- imprimimos la tabla en la vista por cada celda -->
+                            <td><%= (i+1)%></td>
+                            <td><%= data[i].Nombre%></td>
+                            <td><%= data[i].Direccion%></td>
+                            <td><%= data[i].Telefono%></td>
+                            <!-- celda con enlaces tipo boton -->
+                            <td>
+                                <!--cada enlace me va a llevar a la direccion /eliminar y seguido
+                                agregaremos el id del item a eliminar que seria [i]-->
+                                <a href="/eliminar/<%= data[i].id %>" class="btn btn-danger">Eliminar</a>
+                                <a href="/actualizar/<%= data[i].id %>" class="btn btn-info">Actualizar</a>
+                            </td>
+                            </tr> 
+                        <%} %>
+                    <%} %>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-5">
+            <!--cuerpo de la tarjeta-->
+            <div class="card-body">
+                <!--/add es una ruta del servirvidor para enviarme un nuevo 
+                cliente desde el navegador al servidor con el metodo post-->
+                <form action="/add" method="post">
+                    <div class="form-group">
+                    <input type="text" name="Nombre" placeholder="ingrese Nombre" class="form-control" autofocus>
+                    </div>
+                    <div class="form-group">
+                    <input type="text" name="Direccion" placeholder="ingrese direccion" class="form-control">
+                    </div>
+                    <div class="form-group">
+                    <input type="text" name="Telefono" placeholder="ingrese 10 digitos Telefono" class="form-control">
+                    </div>
+        
+                    <button type="submit" class="btn btn-primary">
+                    guardar cliente
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Importamos el pie con ejs -->
+<%- include ('partials/footer.ejs'); %>

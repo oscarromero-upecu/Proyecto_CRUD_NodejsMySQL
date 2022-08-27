@@ -14,8 +14,6 @@ const myConnection = require('express-myconnection');
 //una vez requerido vamos a inicializarlo con una constante llamado app
 const app = express();
 
-
-
 //settings, seccion que se encargara de configurar express
 //port (variable) que establecer el puerto del servidor
 /*process.env.PORT || 3000 es como desirle que revise si existe un puerto
@@ -51,20 +49,19 @@ database:'nodejsMysqlCRUD'
 /*aparte vamos a darle una configuracion que es como vamos a conectarnos al servidor que
 seria single */
 },'single'));
+//urlencoded de express le daremos un parametro una propiedad extended
+/*es decir que desde el modulo de express estamos llamando a un metodo que mos
+va a permitir poder entender todos los datos que viene del formulario html*/
+app.use(express.urlencoded({extended: true}));
 
-app.use(express.urlencoded({extended: false}));
 
 //importando rutas
 /*Vamos a decir tienes que ingresar a la carpeta route que esta el erchivo customer
 y lo vamos aguardar en una costante llamada customerRoutes*/
 const customerRoutes = require('./routes/customer');
-
 //rutas, empezamos a escribir los urls que los usuario van a pedir en el servidor 
 //aplicacion utiliza cada vez que llegue el usuario del servidor customer
 app.use('/', customerRoutes);
-
-
-
 
 /*archivos staticos, son complemento para imagenes, codigo fuente que iran en
 la carpeta llamada public*/

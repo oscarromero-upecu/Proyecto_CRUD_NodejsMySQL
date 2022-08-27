@@ -9,10 +9,12 @@ const customerController = require('../contollers/customerController');
 /*cuando recibas la ruta inicial al servidor vamos a manejar con la funcion
 rep,res que es la encargada de enviar la respuesta*/
 router.get('/', customerController.list);
-//router.post('/add', customerController.save);
-//router.get('/update/:id', customerController.edit);
-//router.post('/update/:id', customerController.update);
-//router.get('/delete/:id', customerController.delete);
+/*router escucha a travez del metodo post un aruta nueva llamada add*/
+router.post('/add', customerController.guardar);
+router.get('/actualizar/:id', customerController.actualizar);
+router.post('/actualizar/:id', customerController.editar);
+//parametro de la ruta :id
+router.get('/eliminar/:id', customerController.eliminar);
 
 //luego exportamos el metodo router
 module.exports = router;
