@@ -1,5 +1,3 @@
-const { connect } = require("../routes/customer");
-
 //creamos un objeto llamado controller para ir cambiando
 const controller = {};
 
