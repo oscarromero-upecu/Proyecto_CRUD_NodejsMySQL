@@ -18,6 +18,7 @@ const app = express();
 //port (variable) que establecer el puerto del servidor
 /*process.env.PORT || 3000 es como desirle que revise si existe un puerto
 en el sistema operativo y de no existir usa el 3000*/
+
 app.set('port', process.env.PORT || 3000);
 
 //vamos a configurar el motor de plantillas que sera ejs
@@ -33,6 +34,7 @@ operativo, entonces vamos a utilizar el modulo path*/
 app.set('views', path.join(__dirname, 'views'));
 
 /*
+
 !middlewares, son funciones que se ejecutan antes de que vengan las peticiones
 de los usuarios LAS QUE CONOCEMOS COMO RUTAS*/
 /*vamos a requerir los morgan  como funcion y como parametros
